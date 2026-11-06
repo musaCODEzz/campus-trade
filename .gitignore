@@ -1,0 +1,30 @@
+# Virtual Environment
+venv/
+*/venv/
+env/
+*/env/
+.venv/
+*/.venv/
+
+# Python Bytecode / Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local Databases
+*.sqlite3
+db.sqlite3
+db.sqlite3-journal
+
+# Static & Media outputs
+staticfiles/
+media/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
