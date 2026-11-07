@@ -11,8 +11,8 @@ Built with **Python**, **Django MVT Architecture**, and a clean **Minimalist Dar
 | Developer | Role | Assigned Module | Key Deliverables |
 |---|---|---|---|
 | **Musa Maxwell** | **Team Lead & Core Architecture** | `core_app` | Project foundation, `base.html` layout, global dark styling, home, about, and contact pages. |
-| **Brian** | **Backend & Catalog Engineer** | `products_app` | Product data models, category filters, product listings, and search. |
-| **Stacy** | **Auth & Security Engineer** | `accounts_app` | Student registration, session login, logout, and user profile management. |
+| **Mary** | **Backend & Catalog Engineer** | `products_app` | Product data models, category filters, product listings, and search. |
+| **Magdalene** | **Auth & Security Engineer** | `accounts_app` | Student registration, session login, logout, and user profile management. |
 
 ---
 
