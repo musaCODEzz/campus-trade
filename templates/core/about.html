@@ -1,23 +1,49 @@
 {% extends 'base.html' %}
 
-{% block title %}About Us — CampusTrade{% endblock %}
+{% block title %}About — CampusTrade{% endblock %}
 
 {% block content %}
-    <div class="page-container">
-        <h1>About CampusTrade</h1>
-        <p style="margin: 16px 0; color: #475569; font-size: 1.1rem;">
-            CampusTrade was built by students, for students. We make buying and selling second-hand campus items effortless, transparent, and safe.
-        </p>
+    <section class="section-wrapper" style="margin-top: 60px;">
+        <h1 style="font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px;">
+            Built By Students,<br>
+            For Students<span style="color: var(--accent-lime);">.</span>
+        </h1>
 
-        <div class="card-grid">
-            <div class="card">
-                <h3>🎯 Our Mission</h3>
-                <p>To reduce student living costs by facilitating a circular economy of campus essentials.</p>
+        <div class="hero-subtitle-row" style="margin-bottom: 50px;">
+            <div class="hero-italic">
+                A circular campus economy without middleman markups.
             </div>
-            <div class="card">
-                <h3>🛡️ Campus Safety</h3>
-                <p>All sellers are verified campus students to ensure secure face-to-face meetups on campus grounds.</p>
+            <div class="hero-description">
+                CampusTrade was created to solve a simple problem: every semester, students graduate or move hostels with valuable gear, while freshers struggle with high retail prices. We connect students directly for fast, verified peer-to-peer exchanges.
             </div>
         </div>
-    </div>
+
+        <div class="cards-grid">
+            <div class="dark-card">
+                <span style="font-size: 1.8rem; margin-bottom: 12px; display: block;">🎯</span>
+                <h3>Our Mission</h3>
+                <p>To reduce student living costs by empowering a transparent, campus-wide circular exchange of books, gadgets, and room needs.</p>
+            </div>
+
+            <div class="dark-card">
+                <span style="font-size: 1.8rem; margin-bottom: 12px; display: block;">🛡️</span>
+                <h3>Campus Safety First</h3>
+                <p>Trade with confidence. All sellers are verified students, making in-person campus meetups completely safe and trustworthy.</p>
+            </div>
+
+            <div class="dark-card">
+                <span style="font-size: 1.8rem; margin-bottom: 12px; display: block;">⚡</span>
+                <h3>Zero Shipping Delays</h3>
+                <p>Skip the courier fees. Find what you need right in your campus hostel or library and pick it up within minutes.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px; padding: 40px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; text-align: center;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 12px;">Have items you want to pass on?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                List your books or devices in seconds and connect with buyers on campus today.
+            </p>
+            <a href="{% url 'contact' %}" class="btn-lime">List An Item Now ↗</a>
+        </div>
+    </section>
 {% endblock %}
