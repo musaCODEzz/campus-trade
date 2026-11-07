@@ -1,27 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}Home — CampusTrade{% endblock %}
+{% block title %}CampusTrade — Student Marketplace{% endblock %}
 
 {% block content %}
-    <header class="hero">
-        <h1>Buy & Sell on Campus Safely</h1>
-        <p>The marketplace built exclusively for students. Find textbooks, gadgets, and room essentials near you.</p>
-    </header>
+    <section class="hero" style="margin-top: 60px;">
+        <h1>
+            Campus<br>
+            Trade<span class="accent-dot">.</span>
+        </h1>
 
-    <div class="page-container">
-        <div class="card-grid">
-            <div class="card">
-                <h3>📚 Textbooks & Notes</h3>
-                <p>Pass on your previous semester coursebooks to incoming freshers at affordable prices.</p>
+        <div class="hero-subtitle-row">
+            <div class="hero-italic">
+                Buy, sell & pass on gear with verified students.
             </div>
-            <div class="card">
-                <h3>💻 Electronics & Laptops</h3>
-                <p>Find genuine laptops, chargers, headphones, and calculators from fellow students.</p>
-            </div>
-            <div class="card">
-                <h3>🛋️ Hostel & Room Needs</h3>
-                <p>Kettles, study lamps, curtains, and furniture for your room.</p>
+            <div class="hero-description">
+                A simple campus marketplace built for university students. From course textbooks and calculators to laptops and hostel room essentials, trade safely face-to-face on campus grounds.
             </div>
         </div>
-    </div>
+
+        <div class="hero-cta">
+            <a href="{% url 'about' %}" class="btn-lime">Explore Items ↗</a>
+            <a href="{% url 'contact' %}" class="btn-outline">Post An Item</a>
+        </div>
+    </section>
+
+    <!-- Categories / Items Grid -->
+    <section class="section-wrapper">
+        <div class="cards-grid">
+            <div class="dark-card">
+                <h3>📚 Textbooks & Course Notes</h3>
+                <p>Pass on your semester materials to fellow students at fair, student-friendly prices.</p>
+            </div>
+            <div class="dark-card">
+                <h3>💻 Laptops & Engineering Gear</h3>
+                <p>Verified electronics, scientific calculators, and hardware tested by fellow peers.</p>
+            </div>
+            <div class="dark-card">
+                <h3>🛋️ Hostel & Room Furnishings</h3>
+                <p>Kettles, study lamps, curtains, and furniture for smooth campus relocation.</p>
+            </div>
+        </div>
+    </section>
 {% endblock %}

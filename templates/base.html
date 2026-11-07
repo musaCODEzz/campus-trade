@@ -4,32 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}CampusTrade — Student Marketplace{% endblock %}</title>
-    <!-- Master CSS Link -->
+    <title>{% block title %}CampusTrade{% endblock %}</title>
+    <!-- Master CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-    <!-- Shared Navigation Bar -->
+    <!-- Minimalist Dark Navbar -->
     <nav class="navbar">
-        <a href="{% url 'home' %}" class="nav-brand">🎓 CampusTrade</a>
+        <a href="{% url 'home' %}" class="nav-brand">CT<span>.</span></a>
+        
         <ul class="nav-links">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'home' %}">Marketplace</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
-            <li><a href="{% url 'contact' %}" class="btn-nav">Post Ad</a></li>
+            <li><a href="{% url 'contact' %}" class="btn-hire">Post Ad</a></li>
         </ul>
     </nav>
 
-    <!-- The Content Block: Child pages inject their code right here! -->
+    <!-- Main Content Area: Injected by Child Templates -->
     <main class="main-content">
         {% block content %}
         {% endblock %}
     </main>
 
-    <!-- Shared Footer -->
+    <!-- Dark Minimalist Footer -->
     <footer>
-        <p>&copy; 2026 CampusTrade. Built with Django. </p>
+        <p>&copy; 2026 CampusTrade. All rights reserved.</p>
+        <p>Built with Django MVT</p>
     </footer>
 
 </body>
