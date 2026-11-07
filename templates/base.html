@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CampusTrade — Student Marketplace{% endblock %}</title>
+    <!-- Master CSS Link -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Shared Navigation Bar -->
+    <nav class="navbar">
+        <a href="{% url 'home' %}" class="nav-brand">🎓 CampusTrade</a>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'contact' %}" class="btn-nav">Post Ad</a></li>
+        </ul>
+    </nav>
+
+    <!-- The Content Block: Child pages inject their code right here! -->
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Shared Footer -->
+    <footer>
+        <p>&copy; 2026 CampusTrade. Built with Django. </p>
+    </footer>
+
+</body>
+</html>
