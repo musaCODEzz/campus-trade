@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Student Registration</title></head>
+<body>
+    <h2>Register for CampusTrade</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
