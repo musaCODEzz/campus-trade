@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login — CampusTrade{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+    <div class="auth-card">
+
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p class="auth-subtitle">Log in to your CampusTrade account.</p>
+        </div>
+
+        <form method="POST" class="auth-form">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="auth-error">
+                    <p>⚠️ Incorrect username or password. Please try again.</p>
+                </div>
+            {% endif %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn-auth">Log In →</button>
+        </form>
+
+        <p class="auth-switch">
+            Don't have an account?
+            <a href="{% url 'register' %}">Register here</a>
+        </p>
+
+    </div>
+</section>
+
+<style>
+    .auth-section {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .auth-card {
+        background: #111111;
+        border: 1px solid #222222;
+        border-radius: 12px;
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 460px;
+    }
+
+    .auth-header {
+        margin-bottom: 2rem;
+    }
+
+    .auth-header h2 {
+        font-size: 1.8rem;
+        color: #ffffff;
+        margin-bottom: 0.4rem;
+    }
+
+    .auth-subtitle {
+        color: #888888;
+        font-size: 0.95rem;
+    }
+
+    .auth-form p {
+        margin-bottom: 1.2rem;
+    }
+
+    .auth-form label {
+        display: block;
+        color: #888888;
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .auth-form input {
+        width: 100%;
+        background: #0a0a0a;
+        border: 1px solid #222222;
+        border-radius: 6px;
+        padding: 0.75rem 1rem;
+        color: #ffffff;
+        font-size: 1rem;
+        box-sizing: border-box;
+    }
+
+    .auth-form input:focus {
+        outline: none;
+        border-color: #ccff00;
+    }
+
+    .auth-form ul {
+        color: #888888;
+        font-size: 0.8rem;
+        padding-left: 1rem;
+        margin-top: 0.3rem;
+    }
+
+    .auth-error {
+        background: rgba(255, 80, 80, 0.1);
+        border: 1px solid rgba(255, 80, 80, 0.3);
+        border-radius: 6px;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1.5rem;
+        color: #ff8080;
+        font-size: 0.9rem;
+    }
+
+    .btn-auth {
+        width: 100%;
+        background: #ccff00;
+        color: #0a0a0a;
+        border: none;
+        border-radius: 6px;
+        padding: 0.85rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 0.5rem;
+        letter-spacing: 0.03em;
+    }
+
+    .btn-auth:hover {
+        background: #b8e600;
+    }
+
+    .auth-switch {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #888888;
+        font-size: 0.9rem;
+    }
+
+    .auth-switch a {
+        color: #ccff00;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .auth-switch a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}
