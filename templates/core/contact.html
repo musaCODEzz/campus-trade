@@ -7,7 +7,11 @@
         <div class="form-box-dark">
             <h1 style="font-size: 2.2rem; margin-bottom: 8px;">Get In Touch<span style="color: var(--accent-lime);">.</span></h1>
             <p style="color: var(--text-secondary); margin-bottom: 28px;">Have an inquiry or need assistance with your campus listing? Reach out directly.</p>
-
+            {% if success %}
+                <p style="color: var(--accent-lime); font-weight: bold; margin-bottom: 20px;">
+                    ✅ Thank you! Your message has been sent to our campus team.
+                </p>
+            {% endif %}
             <form action="#" method="POST">
                 {% csrf_token %}
                 <div class="form-group-dark">
