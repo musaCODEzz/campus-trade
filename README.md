@@ -4,6 +4,7 @@ A modern campus marketplace built **exclusively for Kenyan university students**
 
 Built with **Python**, **Django MVT Architecture**, and a clean **Minimalist Dark Aesthetic** designed to feel native to the campus generation.
 
+> 🌐 **Live Demo:** [https://campus-trade-mtmj.onrender.com/](https://campus-trade-mtmj.onrender.com/)  
 > **Tagline:** *Trade smart. Trade safe. Trade campus.*
 
 ---
@@ -23,7 +24,7 @@ Kenyan university students constantly face two painful problems:
 
 | Developer | Role | Assigned Module | Key Deliverables |
 |---|---|---|---|
-| **Musa Maxwell** | **Team Lead & Core Architecture** | `core_app` | Project foundation, `base.html` layout, global dark styling, home, about, and contact pages. |
+| **Musa Maxwell** | **Team Lead & Core Architecture** | `core_app` | Project foundation, `base.html` layout, global dark styling, home, about, contact model, admin integration, and Render cloud deployment. |
 | **Mary** | **Backend & Catalog Engineer** | `products_app` | Product data models, category filters, product listings, and search. |
 | **Magdalene** | **Auth & Security Engineer** | `accounts_app` | Student registration, session login, logout, and user profile management. |
 
@@ -31,21 +32,23 @@ Kenyan university students constantly face two painful problems:
 
 ## ✅ Current Features (What's Live)
 
-- 🏠 **Home Page** — Landing page with platform intro and call-to-action
-- 📄 **About Page** — Team info and platform mission
-- 📬 **Contact Page** — Contact form and campus info
-- 🎨 **Global Dark Theme** — Electric lime (`#ccff00`) accents on a deep dark (`#0a0a0a`) background with a subtle grid texture
-- 🧱 **Template Inheritance** — All pages share one `base.html` master layout with a sticky navbar and footer
+- 🌐 **Live Production Deployment** — Hosted in the cloud on Render with Gunicorn and WhiteNoise static asset caching.
+- 🏠 **Home Page** — Clean landing page with platform mission and call-to-actions.
+- 📄 **About Page** — Platform vision and campus community guidelines.
+- 📬 **Interactive Contact System** — Contact inquiries are validated and saved into the database (`ContactMessage` model) with full Django Admin visibility.
+- 🔐 **Student Authentication** — Complete account creation, credential validation, login sessions, and logout with responsive navbar state changes.
+- 🎨 **Global Dark Theme** — Electric lime (`#ccff00`) accents on a deep dark (`#0a0a0a`) background with subtle grid texture.
+- 🧱 **Template Inheritance** — All pages extend a single `base.html` master layout with a sticky navbar and dark footer.
 
 ---
 
 ## 🔜 Upcoming Features (In Development)
 
-- 📦 **Product Listings** *(Mary — products_app)* — Browse, filter and search items by category: Textbooks, Electronics, Hostel Essentials, Clothing
-- 🔐 **Student Accounts** *(Magdalene — accounts_app)* — Register with a `.ac.ke` email, login, logout, and manage your profile
-- 🛡️ **Verified Listings** — Student ID verification for high-value item listings
-- 💬 **In-platform Messaging** — Safe buyer-seller chat without leaving the platform
-- 📱 **Mobile Responsive Design** — Optimised for Android phones (the primary campus device)
+- 📦 **Product Catalog & Listings** *(Mary — products_app)* — Browse, filter, and search items by category (Textbooks, Electronics, Hostel Essentials, Furniture).
+- 🏷️ **Seller Dashboard** — Post new ads, edit prices, mark items as sold.
+- 🛡️ **Verified Student Badges** — Student ID verification for high-value transactions.
+- 💬 **In-Platform Direct Messaging** — Safe buyer-seller communication without sharing phone numbers.
+- 📱 **PWA / Android Optimization** — Mobile-first optimization for Kenyan campus networks.
 
 ---
 
@@ -53,17 +56,19 @@ Kenyan university students constantly face two painful problems:
 
 | Layer | Technology |
 |---|---|
-| **Backend** | Python 3.9+, Django 4.x (MVT — Model View Template) |
+| **Backend** | Python 3.9+, Django (MVT — Model View Template) |
 | **Database** | SQLite3 (development) → PostgreSQL (production) |
-| **Frontend** | Semantic HTML5, Vanilla CSS3 (Custom dark theme, no frameworks) |
-| **Version Control** | Git & GitHub (branch-per-feature + Pull Request workflow) |
-| **Deployment** *(planned)* | Railway / Render (free tier for student projects) |
+| **Frontend** | Semantic HTML5, Vanilla CSS3 (Custom dark theme, CSS Variables) |
+| **Static Assets** | WhiteNoise (Compressed & cached in production) |
+| **WSGI Server** | Gunicorn |
+| **Hosting & CI/CD** | Render (Automatic deployments from GitHub `main` branch) |
+| **Version Control** | Git & GitHub (Branch-per-feature + Pull Request code review workflow) |
 
 ---
 
 ## 🚀 Getting Started (Local Setup Guide)
 
-Follow these steps to run CampusTrade on your machine.
+Follow these steps to run CampusTrade locally on your machine.
 
 ### 1. Clone the Repository
 ```bash
@@ -95,12 +100,17 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-### 5. Start the Development Server
+### 5. Create a Superuser (Optional - for Admin access)
+```bash
+python manage.py createsuperuser
+```
+
+### 6. Start the Development Server
 ```bash
 python manage.py runserver
 ```
 
-Open your browser and go to: **`http://127.0.0.1:8000/`**
+Open your browser and navigate to: **`http://127.0.0.1:8000/`**
 
 ---
 
@@ -109,26 +119,29 @@ Open your browser and go to: **`http://127.0.0.1:8000/`**
 ```
 campus-trade/
 ├── .gitignore                   # Excludes venv, sqlite3, and bytecode
-├── requirements.txt             # Project dependencies (Django)
+├── requirements.txt             # Project dependencies (Django, gunicorn, whitenoise)
+├── build.sh                     # Render cloud deployment build script
 ├── manage.py                    # Django CLI management script
-├── README.md                    # This file
+├── README.md                    # Project documentation
 │
 ├── campustrade/                 # Root configuration package
-│   ├── settings.py              # Global settings, INSTALLED_APPS, templates
+│   ├── settings.py              # Global settings, INSTALLED_APPS, WhiteNoise
 │   ├── urls.py                  # Master URL routing switchboard
 │   └── wsgi.py                  # WSGI web server entry point
 │
-├── core_app/                    # ✅ DONE — Homepage, About, Contact & static pages
-│   ├── views.py                 # View functions for core pages
+├── core_app/                    # ✅ DONE — Home, About, Contact model & admin
+│   ├── models.py                # ContactMessage model
+│   ├── admin.py                 # Admin registration for inquiries
+│   ├── views.py                 # Page views and contact form processing
 │   └── urls.py                  # URL routes for core pages
+│
+├── accounts_app/                # ✅ DONE — User authentication & accounts
+│   ├── views.py                 # Register, login, logout view handlers
+│   └── urls.py                  # Auth routes (/accounts/register/, /login/, /logout/)
 │
 ├── products_app/                # 🔜 IN PROGRESS — Product catalogue and listings
 │   ├── models.py                # Product schema (Mary)
 │   ├── views.py
-│   └── urls.py
-│
-├── accounts_app/                # 🔜 IN PROGRESS — User authentication & accounts
-│   ├── views.py                 # Register, login, logout (Magdalene)
 │   └── urls.py
 │
 ├── static/                      # Static assets (CSS, images)
@@ -138,9 +151,9 @@ campus-trade/
 │
 └── templates/                   # HTML Templates (Django Template Language)
     ├── base.html                # ✅ Master layout — all pages extend this
-    ├── core/                    # Core app templates (index, about, contact)
-    ├── products/                # Product app templates (product_list, product_detail)
-    └── accounts/                # Auth templates (register, login)
+    ├── core/                    # Core templates (index, about, contact)
+    ├── accounts/                # Auth templates (register, login)
+    └── products/                # Product app templates (product_list, detail)
 ```
 
 ---
@@ -154,11 +167,10 @@ All styling must follow the established design tokens defined in `static/css/sty
 | `--bg-dark` | `#0a0a0a` | Page background |
 | `--bg-card` | `#111111` | Cards, navbars, footers |
 | `--accent-lime` | `#ccff00` | Primary buttons, links, highlights |
+| `--accent-lime-hover` | `#b8e600` | Button hover states |
 | `--text-primary` | `#ffffff` | Headings and body text |
 | `--text-muted` | `#888888` | Subtitles, placeholders |
 | `--border` | `#222222` | Dividers and card borders |
-
-> **Rule:** No new CSS files should be created for individual pages. All shared styles go into `style.css`. Page-specific styles use a `<style>` block inside the `{% block content %}` of that page's template.
 
 ---
 
@@ -166,28 +178,25 @@ All styling must follow the established design tokens defined in `static/css/sty
 
 Every page in CampusTrade **must** extend the `base.html` master layout. This keeps the navbar and footer consistent across all pages.
 
-**Correct template structure for any new page:**
+**Standard template structure for child templates:**
 ```html
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Your Page Title — CampusTrade{% endblock %}
+{% block title %}Page Title — CampusTrade{% endblock %}
 
 {% block content %}
-  <!-- Your unique page content goes here -->
-  <section class="your-section">
-    <h1>Your Heading</h1>
+  <section class="section-wrapper">
+    <h1>Your Content Heading</h1>
   </section>
 {% endblock %}
 ```
-
-**Never** copy the full HTML structure into a new template. Always extend `base.html`.
 
 ---
 
 ## 🌿 Git Branching & Team Contribution Guidelines
 
-To keep the `main` branch production-ready at all times, all contributors follow these rules:
+To keep the `main` branch production-ready and live at all times, all contributors follow these rules:
 
 ### Branch Naming Convention
 | Task Type | Branch Name Format | Example |
@@ -199,71 +208,39 @@ To keep the `main` branch production-ready at all times, all contributors follow
 
 ### Step-by-Step Contribution Flow
 
-**Step 1 — Always start from an updated main:**
-```bash
-git checkout main
-git pull origin main
-```
-
-**Step 2 — Create your feature branch:**
-```bash
-git checkout -b feature-your-feature-name
-```
-
-**Step 3 — Do your work, then stage and commit:**
-```bash
-git add .
-git commit -m "feat: describe what you built"
-```
-
-**Step 4 — Push your branch to GitHub:**
-```bash
-git push -u origin feature-your-feature-name
-```
-
-**Step 5 — Open a Pull Request on GitHub:**
-- Go to `https://github.com/musaCODEzz/campus-trade`
-- Click **"Compare & pull request"**
-- Write a clear description of what you built
-- Assign **Musa Maxwell** as reviewer
-
-**Step 6 — Wait for Lead Review → Merge**
-
-> ⚠️ **Never push directly to `main`.** Every change goes through a Pull Request.
+1. **Pull latest `main`:**
+   ```bash
+   git checkout main
+   git pull origin main
+   ```
+2. **Create your feature branch:**
+   ```bash
+   git checkout -b feature-your-task-name
+   ```
+3. **Stage and commit changes:**
+   ```bash
+   git add .
+   git commit -m "feat: describe what you built"
+   ```
+4. **Push branch to GitHub:**
+   ```bash
+   git push -u origin feature-your-task-name
+   ```
+5. **Open a Pull Request on GitHub:**
+   - Go to `https://github.com/musaCODEzz/campus-trade`
+   - Open PR targeting `main`
+   - Assign **Musa Maxwell** as reviewer
+6. **Lead Review & Merge:**
+   - Once merged, Render automatically updates the live website!
 
 ---
 
 ## 🚫 What NOT to Commit
 
-The `.gitignore` already excludes these — but as a reminder, **never** manually add these to your commits:
-
-- `venv/` — your virtual environment (each developer sets up their own)
-- `db.sqlite3` — your local database
+- `venv/` — local virtual environment
+- `db.sqlite3` — local development database
 - `__pycache__/` — Python bytecode cache
-- `.env` — environment variables and secret keys
-
----
-
-## 📌 Commit Message Convention
-
-Use the **Conventional Commits** format for clean, readable git history:
-
-| Prefix | When to use |
-|---|---|
-| `feat:` | Adding a new feature |
-| `fix:` | Fixing a bug |
-| `style:` | CSS or visual changes (no logic change) |
-| `docs:` | Updating README or documentation only |
-| `refactor:` | Restructuring code without changing behavior |
-| `chore:` | Config changes, dependency updates |
-
-**Examples:**
-```
-feat: implement product list view with category filter
-fix: correct navbar link on mobile screens
-style: update card hover effect to use lime accent
-docs: add template inheritance instructions to README
-```
+- `.env` — sensitive environment variables
 
 ---
 
@@ -271,11 +248,10 @@ docs: add template inheritance instructions to README
 
 This is a group academic project by eMobilis students. If you are a team member:
 
-1. Read this README fully before writing any code.
-2. Set up the project locally using the steps above.
-3. Only work inside your assigned app (`products_app` or `accounts_app`).
-4. Follow the design system — do not introduce new colors or fonts.
-5. Open a PR when done — do not merge your own PR.
+1. Read this README before writing any code.
+2. Only work inside your assigned module (`products_app`).
+3. Follow the design system in `style.css`.
+4. Open a PR for review — never push directly to `main`.
 
 ---
 
