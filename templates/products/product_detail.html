@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.title }} — CampusTrade{% endblock %}
+
+{% block content %}
+<section class="section-wrapper" style="margin-top: 50px;">
+
+    <!-- Back Navigation -->
+    <a href="{% url 'product_list' %}" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; margin-bottom: 30px;">
+        ← Back to Marketplace
+    </a>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 35px; align-items: start;">
+
+        <!-- Product Main Info -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 36px;">
+            <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-lime); font-weight: 700;">
+                    {{ product.get_category_display }}
+                </span>
+                <span style="font-size: 0.8rem; color: var(--text-secondary); background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px;">
+                    Condition: {{ product.get_condition_display }}
+                </span>
+            </div>
+
+            <h1 style="font-size: 2.4rem; font-weight: 800; line-height: 1.15; margin-bottom: 20px;">
+                {{ product.title }}
+            </h1>
+
+            <div style="font-size: 2rem; font-weight: 800; color: var(--accent-lime); margin-bottom: 30px;">
+                Ksh {{ product.price }}
+            </div>
+
+            <div style="border-top: 1px solid var(--border-color); padding-top: 25px; margin-bottom: 35px;">
+                <h4 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 12px;">
+                    Item Description
+                </h4>
+                <p style="color: var(--text-primary); font-size: 1.05rem; line-height: 1.8; white-space: pre-line;">
+                    {{ product.description }}
+                </p>
+            </div>
+
+            <!-- Campus Safety Box -->
+            <div style="background: rgba(204, 255, 0, 0.04); border: 1px solid rgba(204, 255, 0, 0.2); border-radius: 6px; padding: 20px;">
+                <h4 style="color: var(--accent-lime); font-size: 0.95rem; margin-bottom: 6px;">🛡️ Safe Campus Trading Reminder</h4>
+                <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5;">
+                    Always meet your fellow student in public campus areas (library entrance, cafeteria, or school gates). Inspect and test the item thoroughly before handing over cash or sending M-Pesa.
+                </p>
+            </div>
+        </div>
+
+        <!-- Seller Sidebar -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 30px;">
+            <h3 style="font-size: 1.2rem; margin-bottom: 18px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+                Seller Information
+            </h3>
+
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 4px;">
+                    Student Username
+                </div>
+                <div style="font-size: 1.2rem; font-weight: 700; color: var(--text-primary);">
+                    @{{ product.seller.username }}
+                </div>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 4px;">
+                    Listed On
+                </div>
+                <div style="font-size: 0.95rem; color: var(--text-secondary);">
+                    {{ product.created_at|date:"M d, Y" }}
+                </div>
+            </div>
+
+            <!-- Contact Seller CTA -->
+            <a href="mailto:{{ product.seller.email }}?subject=Inquiry about {{ product.title }} on CampusTrade" 
+               class="btn-lime" 
+               style="width: 100%; justify-content: center; text-align: center; margin-bottom: 12px;">
+                Email Seller ✉️
+            </a>
+
+            <div style="text-align: center; font-size: 0.78rem; color: var(--text-secondary);">
+                Verified student trading on CampusTrade
+            </div>
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}
+
