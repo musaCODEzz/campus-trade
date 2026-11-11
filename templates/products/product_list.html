@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Marketplace — CampusTrade{% endblock %}
+
+{% block content %}
+<section class="section-wrapper" style="margin-top: 50px;">
+
+    <!-- Marketplace Header -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; margin-bottom: 35px;">
+        <div>
+            <h1 style="font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px;">
+                Campus Marketplace<span style="color: var(--accent-lime);">.</span>
+            </h1>
+            <p style="color: var(--text-secondary); font-size: 1.05rem;">
+                Buy and sell gear safely face-to-face on campus grounds.
+            </p>
+        </div>
+
+        <!-- Search Bar -->
+        <form method="GET" action="{% url 'product_list' %}" style="display: flex; gap: 10px; max-width: 380px; width: 100%;">
+            <input type="text" name="q" value="{{ search_query|default:'' }}" placeholder="Search laptops, books, kettles..." 
+                   style="flex: 1; background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); padding: 12px 16px; border-radius: 6px; outline: none;">
+            <button type="submit" class="btn-lime" style="border: none; cursor: pointer; padding: 12px 20px;">Search</button>
+        </form>
+    </div>
+
+    <!-- Category Filter Pills (Clean CSS Classes) -->
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px;">
+        <a href="{% url 'product_list' %}" class="category-pill {% if not selected_category %}active{% endif %}">
+            All Items
+        </a>
+        {% for code, label in categories %}
+            <a href="?category={{ code }}" class="category-pill {% if selected_category == code %}active{% endif %}">
+                {{ label }}
+            </a>
+        {% endfor %}
+    </div>
+
+    <!-- Product Grid -->
+    {% if products %}
+        <div class="cards-grid">
+            {% for item in products %}
+                <div class="dark-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-lime); font-weight: 700;">
+                                {{ item.get_category_display }}
+                            </span>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary); background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 4px;">
+                                {{ item.get_condition_display }}
+                            </span>
+                        </div>
+
+                        <h3 style="font-size: 1.3rem; margin-bottom: 8px;">{{ item.title }}</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin-bottom: 16px;">
+                            {{ item.description|truncatewords:20 }}
+                        </p>
+                    </div>
+
+                    <div style="border-top: 1px solid var(--border-color); padding-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-size: 1.35rem; font-weight: 800; color: var(--accent-lime);">
+                                Ksh {{ item.price }}
+                            </div>
+                            <div style="font-size: 0.78rem; color: var(--text-secondary);">
+                                Seller: {{ item.seller.username }}
+                            </div>
+                        </div>
+
+                        <a href="{% url 'product_detail' item.pk %}" class="btn-outline" style="padding: 8px 16px; font-size: 0.78rem;">
+                            View Item →
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 60px; text-align: center; margin: 40px auto; max-width: 600px;">
+            <div style="font-size: 3rem; margin-bottom: 15px;">📦</div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">No items found</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 25px;">
+                {% if search_query %}
+                    No products matched your search "{{ search_query }}". Try another keyword.
+                {% else %}
+                    There are no listings in this category yet. Be the first student to post an item!
+                {% endif %}
+            </p>
+            <a href="{% url 'product_list' %}" class="btn-lime">Clear Filters</a>
+        </div>
+    {% endif %}
+
+</section>
+{% endblock %}

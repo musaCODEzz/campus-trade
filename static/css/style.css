@@ -432,3 +432,28 @@ footer {
 .auth-switch a:hover {
     text-decoration: underline;
 }
+
+
+/* ─── Marketplace Category Pills ─── */
+.category-pill {
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.03);
+    transition: all 0.2s ease;
+}
+
+.category-pill:hover {
+    border-color: #555555;
+    color: var(--text-primary);
+}
+
+.category-pill.active {
+    border-color: var(--accent-lime);
+    color: #0a0a0a;
+    background: var(--accent-lime);
+}
