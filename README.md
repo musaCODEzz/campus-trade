@@ -24,7 +24,7 @@ Kenyan university students constantly face two painful problems:
 
 | Developer | Role | Assigned Module | Key Deliverables |
 |---|---|---|---|
-| **Musa Maxwell** | **Team Lead & Core Architecture** | `core_app` | Project foundation, `base.html` layout, global dark styling, home, about, contact model, admin integration, and Render cloud deployment. |
+| **Musa Maxwell** | **Team Lead & Core Architecture** | `core_app` + `products_app` | Foundation, master layout (`base.html`), dark design system, contact model, products catalog, search, and Render deployment. |
 | **Mary** | **Backend & Catalog Engineer** | `products_app` | Product data models, category filters, product listings, and search. |
 | **Magdalene** | **Auth & Security Engineer** | `accounts_app` | Student registration, session login, logout, and user profile management. |
 
@@ -32,20 +32,21 @@ Kenyan university students constantly face two painful problems:
 
 ## ✅ Current Features (What's Live)
 
-- 🌐 **Live Production Deployment** — Hosted in the cloud on Render with Gunicorn and WhiteNoise static asset caching.
-- 🏠 **Home Page** — Clean landing page with platform mission and call-to-actions.
-- 📄 **About Page** — Platform vision and campus community guidelines.
+- 🌐 **Live Cloud Deployment** — Hosted on Render with automated GitHub CI/CD, Gunicorn WSGI server, and WhiteNoise static asset caching.
+- 📦 **Campus Marketplace Catalog** — Browse all active student listings with dynamic category filter pills (*Textbooks, Electronics, Hostel, Appliances, Fashion, Other*) and keyword search.
+- 🔍 **Product Detail Inspection** — Dedicated item pages with full descriptions, condition badges, electric lime price tags, safe campus trading reminders, and a direct *"Email Seller ✉️"* button.
+- 🔐 **Student Authentication** — Full account creation, credential validation, login sessions, and logout with responsive navbar state changes.
 - 📬 **Interactive Contact System** — Contact inquiries are validated and saved into the database (`ContactMessage` model) with full Django Admin visibility.
-- 🔐 **Student Authentication** — Complete account creation, credential validation, login sessions, and logout with responsive navbar state changes.
+- 🏠 **Home & Info Pages** — Minimalist landing page, mission statement, and campus guidelines.
 - 🎨 **Global Dark Theme** — Electric lime (`#ccff00`) accents on a deep dark (`#0a0a0a`) background with subtle grid texture.
-- 🧱 **Template Inheritance** — All pages extend a single `base.html` master layout with a sticky navbar and dark footer.
+- 🧱 **Template Inheritance** — All pages extend a single `base.html` master layout with sticky navigation and footer.
 
 ---
 
 ## 🔜 Upcoming Features (In Development)
 
-- 📦 **Product Catalog & Listings** *(Mary — products_app)* — Browse, filter, and search items by category (Textbooks, Electronics, Hostel Essentials, Furniture).
-- 🏷️ **Seller Dashboard** — Post new ads, edit prices, mark items as sold.
+- ➕ **Self-Service Ad Posting** — Web form allowing logged-in students to post new items with category, price, and condition.
+- 🏷️ **Seller Dashboard ("My Listings")** — Manage your active campus listings, update prices, or mark items as sold.
 - 🛡️ **Verified Student Badges** — Student ID verification for high-value transactions.
 - 💬 **In-Platform Direct Messaging** — Safe buyer-seller communication without sharing phone numbers.
 - 📱 **PWA / Android Optimization** — Mobile-first optimization for Kenyan campus networks.
@@ -139,10 +140,11 @@ campus-trade/
 │   ├── views.py                 # Register, login, logout view handlers
 │   └── urls.py                  # Auth routes (/accounts/register/, /login/, /logout/)
 │
-├── products_app/                # 🔜 IN PROGRESS — Product catalogue and listings
-│   ├── models.py                # Product schema (Mary)
-│   ├── views.py
-│   └── urls.py
+├── products_app/                # ✅ DONE — Product catalogue and listings
+│   ├── models.py                # Product model with category & condition choices
+│   ├── views.py                 # product_list and product_detail view handlers
+│   ├── urls.py                  # Routes for marketplace catalog and single items
+│   └── admin.py                 # Django admin filters and search fields
 │
 ├── static/                      # Static assets (CSS, images)
 │   ├── css/
@@ -153,7 +155,7 @@ campus-trade/
     ├── base.html                # ✅ Master layout — all pages extend this
     ├── core/                    # Core templates (index, about, contact)
     ├── accounts/                # Auth templates (register, login)
-    └── products/                # Product app templates (product_list, detail)
+    └── products/                # Product templates (product_list, product_detail)
 ```
 
 ---
@@ -201,7 +203,7 @@ To keep the `main` branch production-ready and live at all times, all contributo
 ### Branch Naming Convention
 | Task Type | Branch Name Format | Example |
 |---|---|---|
-| New feature | `feature-<name>` | `feature-products` |
+| New feature | `feature-<name>` | `feature-post-ad` |
 | Bug fix | `fix-<what>` | `fix-nav-overlap` |
 | Styling update | `style-<what>` | `style-card-layout` |
 | Documentation | `docs-<what>` | `docs-update-readme` |
@@ -249,7 +251,7 @@ To keep the `main` branch production-ready and live at all times, all contributo
 This is a group academic project by eMobilis students. If you are a team member:
 
 1. Read this README before writing any code.
-2. Only work inside your assigned module (`products_app`).
+2. Only work inside your assigned module.
 3. Follow the design system in `style.css`.
 4. Open a PR for review — never push directly to `main`.
 
