@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Post an Item — CampusTrade{% endblock %}
+
+{% block content %}
+<section class="section-wrapper" style="margin-top: 50px;">
+    <div class="form-box-dark">
+        <h1>Post an Item<span style="color: var(--accent-lime);">.</span></h1>
+        <p style="color: var(--text-secondary); margin-bottom: 28px;">
+            List your item and reach campus students instantly.
+        </p>
+
+        {% if error %}
+            <p style="color: #ff8080; margin-bottom: 20px;">⚠️ {{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group-dark">
+                <label for="title">Item Title</label>
+                <input type="text" name="title" id="title"
+                       placeholder="e.g. Calculus 9th Edition" required>
+            </div>
+
+            <div class="form-group-dark">
+                <label for="price">Price (Ksh)</label>
+                <input type="number" name="price" id="price"
+                       placeholder="e.g. 1500" required>
+            </div>
+
+            <div class="form-group-dark">
+                <label for="category">Category</label>
+                <select name="category" id="category">
+                    {% for code, label in categories %}
+                        <option value="{{ code }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group-dark">
+                <label for="condition">Condition</label>
+                <select name="condition" id="condition">
+                    {% for code, label in conditions %}
+                        <option value="{{ code }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group-dark">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" rows="4"
+                          placeholder="Describe your item — what's included, any defects?"></textarea>
+            </div>
+
+            <button type="submit" class="btn-lime"
+                    style="width: 100%; border: none; cursor: pointer; justify-content: center;">
+                Post Item to Marketplace →
+            </button>
+        </form>
+    </div>
+</section>
+{% endblock %}

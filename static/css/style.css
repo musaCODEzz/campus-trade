@@ -457,3 +457,16 @@ footer {
     color: #0a0a0a;
     background: var(--accent-lime);
 }
+/* ─── Post Ad — Select Dropdowns ─── */
+select {
+    width: 100%;
+    background: #0d0d0d;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 12px 14px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
