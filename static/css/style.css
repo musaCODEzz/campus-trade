@@ -240,6 +240,7 @@ body {
     color: var(--text-primary);
 }
 
+
 .dark-card p {
     color: var(--text-secondary);
     font-size: 0.95rem;
