@@ -127,4 +127,13 @@ export const productService = {
   },
 };
 
+// ─── Contact Service ───
+export const contactService = {
+  // POST /api/contact/
+  sendMessage: async (data) => {
+    const res = await api.post('/contact/', data);
+    return res.data;
+  },
+};
+
 export default api;
