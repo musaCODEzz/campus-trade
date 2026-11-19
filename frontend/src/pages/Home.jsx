@@ -36,7 +36,7 @@ export default function Home() {
               style={{
                 fontSize: '1.15rem',
                 lineHeight: '1.75',
-                color: '#e2e8f0',
+                color: '#ffffff',
                 fontWeight: '400',
               }}
             >

@@ -136,7 +136,7 @@ export default function ProductList() {
               className="btn-outline-custom"
               style={{ opacity: hasPrev ? 1 : 0.4 }}
             >
-              &larr; PREVIOUS
+              ← PREVIOUS
             </button>
 
             <span className="text-secondary small">Page {page}</span>
@@ -147,7 +147,7 @@ export default function ProductList() {
               className="btn-outline-custom"
               style={{ opacity: hasNext ? 1 : 0.4 }}
             >
-              NEXT &rarr;
+              NEXT →
             </button>
           </div>
         </>
