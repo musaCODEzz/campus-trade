@@ -4,6 +4,10 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
+import AddProduct from './pages/AddProduct';
+import ProductDetail from './pages/ProductDetail';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import { authService } from './services/api';
 
 function App() {
@@ -18,6 +22,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductList />} />
+            <Route path="/products/add" element={<AddProduct />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/register" element={<Register setUser={setUser} />} />
           </Routes>
         </main>
 

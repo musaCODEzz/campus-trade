@@ -85,7 +85,7 @@ export default function ProductCard({ product }) {
           className="btn-outline-custom"
           style={{ padding: '8px 16px', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '700' }}
         >
-          VIEW ITEM &rarr;
+          VIEW ITEM →
         </Link>
       </div>
     </div>
