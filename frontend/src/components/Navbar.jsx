@@ -32,8 +32,18 @@ export default function Navbar({ user, setUser }) {
         <div className="collapse navbar-collapse" id="navMenu">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-3">
             <li className="nav-item">
+              <Link to="/about" className="nav-link nav-link-custom">
+                ABOUT
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to="/products" className="nav-link nav-link-custom">
                 MARKETPLACE
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/contact" className="nav-link nav-link-custom">
+                CONTACT
               </Link>
             </li>
 
