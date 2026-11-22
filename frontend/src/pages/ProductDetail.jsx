@@ -345,7 +345,7 @@ export default function ProductDetail() {
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              EMAIL SELLER ✉
+              Email Seller ✉️
             </a>
 
             {/* Verified Student Caption */}
